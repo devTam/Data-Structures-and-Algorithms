@@ -1,3 +1,3 @@
 # Data-Structures-and-Algorithms
 
-Repo for practicing algorithm problems
+Repo for practicing Data Structures and Algorithm problems
