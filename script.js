@@ -174,6 +174,25 @@ class SinglyLinkedList {
         return currentNode;
     }
 
+    reverse() {
+        if (this.length === 1) return this.head;
+        let first = this.head;
+        this.tail = this.head;
+        let second = first.next;
+        while(second) {
+            const nextNode = second.next;
+            // reversing the pointers backwards and moving the position of first and second forwards
+            second.next = first;
+            first = second;
+            second = nextNode
+        }
+        // At this point the first is now the last node because the loop exits when second is now null
+        // hence point the head to null since it's now the last node
+        this.head.next = null;
+        this.head = first;
+        return this;
+    }
+
     printList() {
         const array = [];
         let currentNode = this.head;
@@ -186,12 +205,13 @@ class SinglyLinkedList {
 }
 
 
-// const mySinglyLinkedList = new SinglyLinkedList(10);
-// mySinglyLinkedList.append(5);
-// mySinglyLinkedList.prepend(1);
-// mySinglyLinkedList.insert(2, 99);
-// mySinglyLinkedList.remove(2);
-// console.log(mySinglyLinkedList.printList());
+const mySinglyLinkedList = new SinglyLinkedList(10);
+mySinglyLinkedList.append(5);
+mySinglyLinkedList.prepend(1);
+mySinglyLinkedList.insert(2, 99);
+mySinglyLinkedList.remove(2);
+mySinglyLinkedList.reverse();
+console.log(mySinglyLinkedList.printList());
 
 class DoubleNode {
     constructor(value) {
@@ -281,11 +301,11 @@ class DoublyLinkedList {
     }
 }
 
-const myDoublyLinkedList = new DoublyLinkedList(10);
-myDoublyLinkedList.append(5);
-myDoublyLinkedList.prepend(1);
-myDoublyLinkedList.insert(2, 99);
-myDoublyLinkedList.remove(2);
-console.log(myDoublyLinkedList);
+// const myDoublyLinkedList = new DoublyLinkedList(10);
+// myDoublyLinkedList.append(5);
+// myDoublyLinkedList.prepend(1);
+// myDoublyLinkedList.insert(2, 99);
+// myDoublyLinkedList.remove(2);
+// console.log(myDoublyLinkedList);
 
 
