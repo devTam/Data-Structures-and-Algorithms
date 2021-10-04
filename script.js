@@ -338,6 +338,7 @@ class Stack {
     pop() {
         if(!this.top) return null;
         if(this.length === 1) this.bottom = null;
+        //  keep reference to previous top so it is not garbage collected.
         const prevTop = this.top
         this.top = this.top.next;
         this.length--;
@@ -355,6 +356,8 @@ myStack.push('Udemy');
 myStack.push('Youtube');
 myStack.pop();
 // console.log(myStack);
+
+// ----- STACKS USING Array-----------
 
 class StackArray {
     data = [];
@@ -380,4 +383,45 @@ myArrayStack.push('Youtube');
 myArrayStack.pop();
 // console.log(myArrayStack);
 
+// ----- QUEUEs USING LINKED LIST-----------
 
+class Queue {
+    first = null;
+    last = null;
+    length = 0;
+
+    peek() {
+        return this.first;
+    }
+
+    enqueue(value) {
+        const newNode = new Node(value);
+        if(this.length === 0) {
+            this.first = newNode;
+            this.last = newNode;
+        }else {
+            // adding to the queue/ last node
+            this.last.next = newNode ;
+            this.last = newNode;
+        }
+        this.length++
+        return this;
+    }
+
+    dequeue() {
+        if(!this.first) return null;
+        if(this.length === 1) this.last = null;
+        //  keep reference to previous so it is not garbage collected.
+        const prev = this.first;
+        this.first = this.first.next;
+        this.length--;
+        return prev;
+    }
+}
+
+const myQueue = new Queue();
+myQueue.enqueue('Google')
+myQueue.enqueue('Udemy')
+myQueue.enqueue('Youtube');
+myQueue.dequeue('Youtube');
+// console.log(myQueue);
