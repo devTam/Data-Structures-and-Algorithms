@@ -366,6 +366,7 @@ class StackArray {
         return this.data[this.data.length - 1];
     }
 
+    // N/B  elements are inserted and removed from same end(top) in Stack
     push(value) {
         this.data.unshift(value);
         return this.data;
@@ -423,5 +424,48 @@ const myQueue = new Queue();
 myQueue.enqueue('Google')
 myQueue.enqueue('Udemy')
 myQueue.enqueue('Youtube');
-myQueue.dequeue('Youtube');
+myQueue.dequeue();
 // console.log(myQueue);
+
+//  ----- QUEUE USING STACKS(ARRAY)
+class StackQueue {
+    s1 = [];
+    s2 = [];
+
+    peek() {
+        while(this.s1.length !== 0){
+            this.s2.push(this.s1.pop());
+        }
+        var pop = this.s2.pop();
+        this.s1.push(pop);
+        while(this.s2.length !== 0){
+            this.s1.push(this.s2.pop());
+        }
+        return pop;
+    }
+
+    enqueue(value) {
+        this.s1.push(value);
+    }
+
+    dequeue() {
+        // N/B  elements are inserted from rear and removed from front in Queue
+        while(this.s1.length !== 0){
+            this.s2.push(this.s1.pop());
+        }
+        const pop = this.s2.pop();
+        while(this.s2.length !== 0){
+            this.s1.push(this.s2.pop());
+        }
+        return pop;
+    }
+}
+
+const myStackQueue = new StackQueue();
+myStackQueue.enqueue('Google');
+myStackQueue.enqueue('Udemy');
+myStackQueue.enqueue('Youtube');
+myStackQueue.dequeue();
+myStackQueue.dequeue();
+// myStackQueue.dequeue();
+// console.log(myStackQueue);
