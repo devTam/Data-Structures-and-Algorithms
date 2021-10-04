@@ -206,12 +206,12 @@ class SinglyLinkedList {
 
 
 const mySinglyLinkedList = new SinglyLinkedList(10);
-mySinglyLinkedList.append(5);
-mySinglyLinkedList.prepend(1);
-mySinglyLinkedList.insert(2, 99);
-mySinglyLinkedList.remove(2);
-mySinglyLinkedList.reverse();
-console.log(mySinglyLinkedList.printList());
+// mySinglyLinkedList.append(5);
+// mySinglyLinkedList.prepend(1);
+// mySinglyLinkedList.insert(2, 99);
+// mySinglyLinkedList.remove(2);
+// mySinglyLinkedList.reverse();
+// console.log(mySinglyLinkedList.printList());
 
 class DoubleNode {
     constructor(value) {
@@ -307,5 +307,77 @@ class DoublyLinkedList {
 // myDoublyLinkedList.insert(2, 99);
 // myDoublyLinkedList.remove(2);
 // console.log(myDoublyLinkedList);
+
+
+
+// ----- STACKS USING LINKED LIST-----------
+
+class Stack {
+    top = null;
+    bottom = null;
+    length = 0;
+
+    peek() {
+        return this.top;
+    }
+
+    push(value) {
+        const newNode = new Node(value);
+        if(this.length === 0) {
+            this.top = newNode;
+            this.bottom = newNode;
+        }else {
+            const prevTop = this.top;
+            this.top = newNode;
+            this.top.next = prevTop;
+        }
+        this.length++
+        return this;
+    }
+
+    pop() {
+        if(!this.top) return null;
+        if(this.length === 1) this.bottom = null;
+        const prevTop = this.top
+        this.top = this.top.next;
+        this.length--;
+        return prevTop;
+    }
+
+    isEmpty() {
+
+    }
+}
+
+const myStack = new Stack();
+myStack.push('Google');
+myStack.push('Udemy');
+myStack.push('Youtube');
+myStack.pop();
+// console.log(myStack);
+
+class StackArray {
+    data = [];
+
+    peek() {
+        return this.data[this.data.length - 1];
+    }
+
+    push(value) {
+        this.data.unshift(value);
+        return this.data;
+    }
+
+    pop() {
+        return this.data.shift();
+    }
+}
+
+const myArrayStack = new StackArray();
+myArrayStack.push('Google');
+myArrayStack.push('Udemy');
+myArrayStack.push('Youtube');
+myArrayStack.pop();
+// console.log(myArrayStack);
 
 
