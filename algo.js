@@ -16,11 +16,8 @@ const findFactorialIteration = (num) => {
 
 // ----- Return index value of a fibonacci ------->
 const fiboRecursion = (num) => {
-    if (num === 1) {
-        return 0;
-    }
-    if (num === 2) {
-        return 1;
+    if (num < 2) {
+        return num;
     }
     return fiboRecursion(num - 1) + fiboRecursion(num - 2); 
 }
@@ -33,7 +30,35 @@ const fiboIteration = (num) => {
     return fibo[num];
 }
 
-// console.log(fiboIteration(3));
+// ----- Memoized fibonacci DYNAMIC PROGRAMMING ------->
+const memoizedFibo = () => {
+    let cache = {};
+    return function fib(num) {
+        if (num in cache) {
+            return cache[num];
+        } else {
+            if (num < 2) {
+                return num;
+            }else {
+                cache[num] = fib(num - 1) + fib(num - 2);
+                return cache[num];
+            }
+        }
+    }
+}
+
+// using the bottom top approach
+const memoizedFibo2 = (num) => {
+    let answer = [0, 1];
+    for (let i = 2; i <= num; i++) {
+        answer.push(answer[i - 1] + answer[i - 2]);
+    }
+    return answer.pop();
+}
+
+const fasterFib = memoizedFibo();
+console.log(fasterFib(2));
+console.log(fiboIteration(2));
 
 // ----- Bubble Sort ------->
 const bubbleSort = (arr) => {
@@ -125,4 +150,4 @@ const quickSort = (arr) => {
     return quickSort(left).concat(pivot, quickSort(right));
 }
 
-console.log(quickSort(numbers));
+// console.log(quickSort(numbers));
