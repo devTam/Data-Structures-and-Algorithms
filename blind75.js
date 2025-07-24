@@ -58,7 +58,7 @@ const maxProfit = (prices) => {
 
 //3. 4 by 4 matrix star pattern
 
-const starPattern = (n) => {
+const starPattern1 = (n) => {
     for(let i = 1; i <= n; i++) {
         let row = "";
         for(let j = 1; j <= i; j++) {
@@ -68,7 +68,33 @@ const starPattern = (n) => {
     }
 }
 
-starPattern(5);
+const starPattern2 = (n) => {
+    for(let i = 0; i < n; i++) {
+        let row = "";
+        for(let j = 0; j < n-i; j++) {
+            row += `${j+1} `;
+        }
+        console.log(row);
+    }
+}
+
+const treePattern = (n) => {
+    for(let i = 0; i < n; i++) {
+        let row = "";
+        for(let j = 0; j < n-i-1; j++) {
+            row += " ";
+        }
+        for(let j = 0; j < 2*i+1; j++) {
+            row += "*";
+        }
+        for(let j = 0; j < n-i-1; j++) {
+            row += " ";
+        }
+        console.log(row);
+    }
+}
+
+treePattern(3);
 
 
 
