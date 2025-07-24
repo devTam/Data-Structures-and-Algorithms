@@ -54,5 +54,21 @@ const maxProfit = (prices) => {
         sell++
     }
     return maxProfit;
-}   
+}  
+
+//3. 4 by 4 matrix star pattern
+
+const starPattern = (n) => {
+    for(let i = 1; i <= n; i++) {
+        let row = "";
+        for(let j = 1; j <= i; j++) {
+            row += `${j} `;
+        }
+        console.log(row);
+    }
+}
+
+starPattern(5);
+
+
 
