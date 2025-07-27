@@ -56,7 +56,7 @@ const maxProfit = (prices) => {
     return maxProfit;
 }  
 
-//3. 4 by 4 matrix star pattern
+//3. 4 by 4 matrix patterns
 
 const starPattern1 = (n) => {
     for(let i = 1; i <= n; i++) {
@@ -78,7 +78,7 @@ const starPattern2 = (n) => {
     }
 }
 
-const treePattern = (n) => {
+const treePattern1 = (n) => {
     for(let i = 0; i < n; i++) {
         let row = "";
         for(let j = 0; j < n-i-1; j++) {
@@ -94,7 +94,78 @@ const treePattern = (n) => {
     }
 }
 
-treePattern(3);
+const treePattern = (n) => {
+    for(let i = 0; i < n; i++) {
+        let row = "";
+        for(let j = 0; j < i; j++) {
+            row += " ";
+        }
+        for(let j = 0; j < 2*n-2*i-1; j++) {
+            row += "*";
+        }
+        for(let j = 0; j < i; j++) {
+            row += " ";
+        }
+        console.log(row);
+    }
+}
 
+//4. Contains Duplicate
+// Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
 
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+const containsDuplicate = (nums) => {
+    const map = new Map();
+    for(let i = 0; i < nums.length; i++) {
+        if(map.has(nums[i])) {
+            return true;
+        }
+        map.set(nums[i], i);
+    }
+    return false;
+}
 
+//5. Product of Array Except Self
+// Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+// The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+// You must write an algorithm that runs in O(n) time and without using the division operation.
+
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+const productOfArrayExceptSelf = (nums) => {
+    const result = new Array(nums.length).fill(1);
+    let prefix = 1;
+    let suffix = 1;
+    for(let i = 0; i < nums.length; i++) {
+        result[i] = prefix;
+        prefix *= nums[i];
+    }
+    for(let i = nums.length-1; i >= 0; i--) {
+        result[i] *= suffix;
+        suffix *= nums[i];
+    }
+    return result;
+}
+
+//6. Maximum Subarray
+// Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+// A subarray is a contiguous part of an array.
+
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+const maxSubArray = (nums) => {
+    let maxSum = nums[0];
+    let currentSum = 0;
+    for(let i = 0; i < nums.length; i++) {
+        currentSum += nums[i];
+        if(currentSum > maxSum) {
+            maxSum = currentSum;
+        }
+        if(currentSum < 0) {
+            currentSum = 0;
+        }
+    }
+}
