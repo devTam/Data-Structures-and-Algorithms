@@ -206,4 +206,41 @@ const reverseString = (s) => {
     }
 }
 
+//9. Reverse vowels
+// Given a string s, reverse the vowels in the string.
 
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+const reverseVowels = (s) => {
+    const vowels = "aeiouAEIOU";
+    let left = 0;
+    let right = s.length-1;
+    while(left < right) {
+        if(vowels.includes(s[left]) && vowels.includes(s[right])) {
+            [s[left], s[right]] = [s[right], s[left]];
+        }
+        if(!vowels.includes(s[left])) {
+            left++;
+        }
+        if(!vowels.includes(s[right])) {
+            right--;
+        }
+    }
+    return s;
+}
+
+//10. Given an integer x, return true if x is a palindrome, and false otherwise.
+
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+const isPalindrome = (x) => {
+    let num = x;
+    let reversed = 0;
+    while(num > 0) {
+        reversed = reversed * 10 + num % 10;
+        num = Math.floor(num / 10);
+    }
+    return reversed === x;
+}
