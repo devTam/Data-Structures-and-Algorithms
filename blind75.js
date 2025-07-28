@@ -244,3 +244,25 @@ const isPalindrome = (x) => {
     }
     return reversed === x;
 }
+
+//11. Valid palindrome
+// Given a string s, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+const isPalindrome2 = (s) => {
+    const cleaned = s.toLowerCase().replace(/[^a-z0-9]/g, "");
+    let left = 0;
+    let right = cleaned.length-1;
+    while(left < right) {
+        if(cleaned[left] !== cleaned[right]) {
+            return false;
+        }
+        left++;
+        right--;
+    }
+    return true;
+}
+
+
