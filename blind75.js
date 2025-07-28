@@ -169,3 +169,41 @@ const maxSubArray = (nums) => {
         }
     }
 }
+
+//7. count digits that divide number
+// Given an integer n, return the number of digits that divide n.
+// A digit divides n if it is a divisor of n.
+
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+const countDigits = (n) => {
+    let count = 0;
+    let num = n;
+    while(num > 0) {
+        let digit = num % 10;
+        if(digit !== 0 && n % digit === 0) {
+            count++;
+        }
+        num = Math.floor(num / 10);
+    }
+    return count;
+}
+
+//8. Reverse string
+// Given an array of characters, reverse the array
+
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+const reverseString = (s) => {
+    let left = 0;
+    let right = s.length-1;
+    while(left < right) {
+        [s[left], s[right]] = [s[right], s[left]];
+        left++;
+        right--;
+    }
+}
+
+
