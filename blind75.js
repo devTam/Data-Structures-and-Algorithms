@@ -265,4 +265,20 @@ const isPalindrome2 = (s) => {
     return true;
 }
 
+//12. Maximum product subarray
+const maxProduct = (nums) => {
+    let result = Math.max(...nums);
+    let currentMin = 1;
+    let currentMax = 1;
+    for(let i = 0; i < nums.length; i++) {
+        let temp = currentMax * nums[i];
+        currentMax = Math.max(nums[i], temp, currentMin * nums[i]);
+        currentMin = Math.min(nums[i], temp, currentMin * nums[i]);
+        result = Math.max(result, currentMax);
+    }
+    return result;
+}
+
+
+
 
